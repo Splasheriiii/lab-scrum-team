@@ -3,6 +3,8 @@
 
 # Package files
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
+
 *.war
 
 # Build directories
