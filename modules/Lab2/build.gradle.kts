@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("application")
 }
 
 group = "study"
@@ -21,4 +22,12 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
     testLogging { events("passed", "failed", "skipped") }
+}
+
+application {
+    mainClass.set("lab2.Main")
+}
+
+tasks.named<JavaExec>("run") {
+    jvmArgs("-Dfile.encoding=UTF-8")
 }
