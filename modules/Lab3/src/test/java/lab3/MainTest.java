@@ -58,7 +58,7 @@ class MainTest {
         return Stream.of(
                 Arguments.of(1, -1,         0),
                 Arguments.of(2, -1,         0),
-                Arguments.of(3, 3254.164,   8,894)
+                Arguments.of(3, 3254.164,   8.894)
         );
     }
 }
