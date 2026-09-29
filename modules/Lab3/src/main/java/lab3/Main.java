@@ -71,7 +71,7 @@ public class Main {
     }
 
     // ---------------- Задание 2 ----------------
-    static void task2(int TARGETS, int MEASUREMENTS, int TRACKED, int CALC_PER_TARGET) {
+    static ResultTask2 task2(int TARGETS, int MEASUREMENTS, int TRACKED, int CALC_PER_TARGET) {
         System.out.println("\n========== Задание №2 ==========");
 
         double n2 = (TARGETS * MEASUREMENTS * TRACKED) + (TARGETS * CALC_PER_TARGET);
@@ -107,7 +107,10 @@ public class Main {
         System.out.printf("Tk  = %.3f дней = %.3f ч%n", TkDays, TkHours);
         System.out.printf("B   = %.3f%n", B);
         System.out.printf("tн  = %.3f ч%n", tn);
+
+        return new ResultTask2(n2,k,i,K,N,V,P,TkDays,TkHours,B,tn);
     }
+    public record ResultTask2(double n2,double k,double i,double K,double N,double V,double P,double TkDays,double TkHours,double B,double tn) {}
 
     // ---------------- Задание 3 ----------------
     static void task3(double R0, double lambda, int n, double[] Vj, int[] Bk, double Vnext) {
@@ -124,7 +127,7 @@ public class Main {
         }
     }
 
-    static Result task3_1(double R0, double lambda, int n, double[] Vj, int[] Bk, double Vnext, int variant) {
+    static ResultTask3 task3_1(double R0, double lambda, int n, double[] Vj, int[] Bk, double Vnext, int variant) {
         double VjSum=0;
 
         for(int q=0; q< Vj.length; q++) {
@@ -143,7 +146,7 @@ public class Main {
         }
         double expectedErrors = coefficient(variant, lambda, R) * Vnext;
 
-        return new Result(R, expectedErrors);
+        return new ResultTask3(R, expectedErrors);
     }
 
     static double coefficient(int variant, double lambda, double R) {
@@ -158,6 +161,6 @@ public class Main {
                 return 0;
         }
     }
-    public record Result(double Rate, double Errors) {}
+    public record ResultTask3(double Rate, double Errors) {}
 
 }

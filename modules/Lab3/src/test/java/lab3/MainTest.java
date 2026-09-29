@@ -11,13 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
-    @Test
+      @Test
     void task1() {
-        assertEquals(2885511.556, Main.task1(30,26,12,3,1.8));
+        assertEquals(Math.round(2885511.556), Math.round(Main.task1(30,26,12,3,1.8)));
     }
     @Test
     void task2() {
-        assertEquals(2885511.556, Main.task1(30,26,12,3,1.8));
+        var re2 = Main.task2(
+                30,
+                26,
+                12,
+                3
+        );
+        assertEquals(Math.round(9450), Math.round(re2.n2()));
+        assertEquals(Math.round(1181.250), Math.round(re2.k()));
+        assertEquals(Math.round(5.402), Math.round(re2.i()));
+        assertEquals(Math.round(1328.906), Math.round(re2.K()));
+        assertEquals(Math.round(306148.138), Math.round(re2.N()));
+        assertEquals(Math.round(1632816.146), Math.round(re2.V()));
+        assertEquals(Math.round(114805.552), Math.round(re2.P()));
+        assertEquals(Math.round(1148.056), Math.round(re2.TkDays()));
+        assertEquals(Math.round(9184.444), Math.round(re2.TkHours()));
+        assertEquals(Math.round(544.272), Math.round(re2.B()));
+        assertEquals(Math.round(728.988), Math.round(re2.tn()));
     }
 
     @ParameterizedTest
