@@ -121,7 +121,7 @@ public class Main {
             if (res.Rate<0) {
                 System.out.printf("Вариант c%d некорректен. Модель не устойчива (R<0) R = %.3f\n", variant, res.Rate);
             } else {
-                System.out.printf("Вариант c%d: R = %.3f, \t ожидаемые ошибки = %.4f%n",
+                System.out.printf("Вариант c%d: R = %.3f, \t ожидаемые ошибки = %.3f \n",
                         variant, res.Rate, res.Errors);
             }
         }

@@ -45,7 +45,7 @@ class MainTest {
                 new double[]{2,3,4,5,6},
                 new int[]{0,0,3,4,3},
                 16,
-                1);
+                variant);
         if(rate == -1)
             assertTrue(res.Rate() < 0);
         else {
@@ -58,7 +58,7 @@ class MainTest {
         return Stream.of(
                 Arguments.of(1, -1,         0),
                 Arguments.of(2, -1,         0),
-                Arguments.of(3, 3254.164,   8.8938)
+                Arguments.of(3, 3254.164,   8,894)
         );
     }
 }
