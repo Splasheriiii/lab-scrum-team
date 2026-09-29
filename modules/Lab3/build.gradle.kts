@@ -20,5 +20,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-    testLogging { events("passed", "failed", "skipped") }
+    testLogging {
+        events("passed", "failed", "skipped")
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+    }
 }
