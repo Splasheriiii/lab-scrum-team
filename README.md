@@ -10,15 +10,14 @@
 
 ```
 ├── settings.gradle.kts          # перечень модулей
+├── build.gradle.kts             # конфигурация всех проектов
 ├── gradlew.bat                  # сборка из командной строки (Windows)
+│
 ├── modules/
 │   ├── Lab2/                    # Модель Джелинского-Моранды
-│   │   │ 
-│   │   ├── build.gradle.kts     # конфигурация проекта
 │   │   └── src/
 │   │       ├── main/java/lab2/  # исходный код
 │   │       └── test/java/lab2/  # тесты
-│   │
 │   │
 │   ├── Lab3/  (пакет lab3)      # Метрики Холстеда
 │   ├── Lab4/  (пакет lab4)      # Статический анализ кода
@@ -32,10 +31,13 @@
 ## Сборка из командной строки
 
 ```bat
-gradlew.bat build                  :: сборка и тесты всех проектов
-gradlew.bat :modules:Lab3:build    :: только Lab3
-gradlew.bat :modules:Lab3:test     :: только тесты Lab3
+gradlew.bat build                           :: сборка и тесты всех проектов
+gradlew.bat :modules:Lab3:build             :: только Lab3
+gradlew.bat :modules:Lab3:test              :: только тесты Lab3
+gradlew.bat :modules:Lab3:test              :: только тесты Lab3
+gradlew.bat :modules:Lab3:jpackageImage     :: собрать exe
 ```
+
 
 ## IntelliJ IDEA (рекомендуемая среда)
 
@@ -79,18 +81,23 @@ https://adoptium.net/temurin/releases/?version=21).
 
 ## Непрерывная интеграция (CI)
 
-При каждом push в ветку `main` и при каждом Pull Request GitHub Actions выполняет
+При каждом push и при каждом Pull Request в main GitHub Actions выполняет
 `.github/workflows/ci.yml`: сборка и тесты всех четырёх проектов на виртуальной машине
 GitHub (`windows-latest`). 
 
 Детали доступны на вкладке Actions.
+
+## Непрерывное развертывание (CD)
+
+При создании тега, GitHub Actions выполняет `.github/workflows/cd.yml`: 
+сборка четырех `exe` и создание Github Release.
 
 ## Правила работы с репозиторием
 
 - Разработку вести в отдельной ветке: `git checkout -b feature/lab-n`.
   Прямые push в `main` запрещены — изменения попадают в основную ветку только через
   Pull Request.
-- Коммитить следует только содержимое `src/` и `build.gradle.kts`. Каталоги `build/`,
-  `.gradle/`, `.idea/` не коммитить (уже добавлены в `.gitignore`).
+- Коммитить следует только содержимое `src/`. 
+  Каталоги `build/`, `.gradle/`, `.idea/` не коммитить.
 - Перед созданием Pull Request выполните `gradlew.bat build` и убедитесь,
   что сборка завершается успешно.
