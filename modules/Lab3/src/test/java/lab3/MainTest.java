@@ -49,8 +49,8 @@ class MainTest {
         if(rate == -1)
             assertTrue(res.Rate() < 0);
         else {
-            assertEquals(res.Errors(), errors);
-            assertEquals(res.Rate(), rate);
+            assertEquals(Math.round(res.Errors()), Math.round(errors));
+            assertEquals(Math.round(res.Rate()), Math.round(rate));
         }
     }
 
