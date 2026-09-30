@@ -1,0 +1,54 @@
+# -------------------------------------------------------------------
+name: Release
+# -------------------------------------------------------------------
+# Пайплайн выполняется при создании тега вида vX.Y.Z, например v0.1.0
+# -------------------------------------------------------------------
+on:
+  push:
+    tags: ['v*']
+# -------------------------------------------------------------------
+# Выполняется на Windows, требуются права на создание Release
+# -------------------------------------------------------------------
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+# -------------------------------------------------------------------
+# Скачать код из репозитория
+# -------------------------------------------------------------------
+      - uses: actions/checkout@v4     
+# -------------------------------------------------------------------
+# Скачать java и gradle
+# -------------------------------------------------------------------
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+# -------------------------------------------------------------------
+# Запуск тестов и сборки exe для всех проектов
+# -------------------------------------------------------------------
+      - name: Build, test and package all labs (exe with bundled JRE)
+        run: ./gradlew.bat build jpackageImage                       
+# -------------------------------------------------------------------
+# Архивация exe в zip для всех проектов
+# -------------------------------------------------------------------
+      - name: Zip app images
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Compress-Archive -Path modules/Lab2/build/jpackage/Lab2 -DestinationPath dist/Lab2-${{ github.ref_name }}.zip
+          Compress-Archive -Path modules/Lab3/build/jpackage/Lab3 -DestinationPath dist/Lab3-${{ github.ref_name }}.zip
+          Compress-Archive -Path modules/Lab4/build/jpackage/Lab4 -DestinationPath dist/Lab4-${{ github.ref_name }}.zip
+          Compress-Archive -Path modules/Lab5/build/jpackage/Lab5 -DestinationPath dist/Lab5-${{ github.ref_name }}.zip
+# -------------------------------------------------------------------
+# Создание GitHub Release с архивами и историей коммитов
+# -------------------------------------------------------------------
+      - name: Create GitHub Release and upload
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true 
+# -------------------------------------------------------------------
