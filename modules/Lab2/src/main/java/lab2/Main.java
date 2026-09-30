@@ -23,9 +23,8 @@ public class Main {
 
         // Решение нелин. уравнения для B
         double B = solveB(n, sumX, sumIX);
-//        int B = (int) Math.round(solveB(n, sumX, sumIX));  // ошибки это int?
 
-        // K по формуле максим. правдоподобия
+        // K по формуле максимального правдоподобия
         double K = n / ((B + 1) * sumX - sumIX);
 
         // Среднее время до (n+1)-й ошибки
@@ -35,18 +34,17 @@ public class Main {
         int remaining = (int) Math.round(B) - n;  // остаток
         double tK = harmonic(remaining) / K;
 
-        System.out.print("");
-        System.out.printf("n = %d%n", n);
-        System.out.printf("sumX = %.3f%n", sumX);
-        System.out.printf("sum i*Xi = %.3f%n", sumIX);
+        System.out.println("Data:");
+        System.out.println("n = " + n);
+        System.out.println("sumX = " + sumX);
+        System.out.println("sum i*Xi = " + sumIX);
         System.out.println();
 
-        System.out.println("--- RESULT ---");
-        System.out.printf("B = %s%n", B);
-        System.out.printf("K = %.10f%n", K);
-        System.out.printf("X_{n+1} = %.6f hours%n", Xnext);
-        System.out.printf("t_k = %.3f hours%n", tK);
-        System.out.println("=== RESULT ===");
+        System.out.println("Result:");
+        System.out.println("B = " + B);
+        System.out.println("K = " + K);
+        System.out.println("X_{n+1} = " + Xnext + " hours");
+        System.out.println("t_k = " + tK + " hours");
     }
 
     /**
