@@ -27,6 +27,8 @@ subprojects {
     dependencies {
         "testImplementation"("org.junit.jupiter:junit-jupiter:5.11.4")
         "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
+        "implementation"("net.sourceforge.pmd:pmd-java:7.28.0")
+        "implementation"("ch.qos.logback:logback-classic:1.5.16")
     }
 
     tasks.withType<Test>().configureEach {

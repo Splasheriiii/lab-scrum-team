@@ -28,6 +28,7 @@ bin/
 .vscode/
 
 # OS
+._*
 Thumbs.db
 .DS_Store
 lab-scrum-team.code-workspace
